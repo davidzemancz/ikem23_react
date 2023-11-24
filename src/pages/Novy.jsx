@@ -39,7 +39,7 @@ const Novy = () => {
         })
     return(
         <Box sx={{m:2, mt:8}}>
-            <Box component="form">
+            <Box component="form" sx={{width:'60vw'}}>
             <Grid container spacing={2}>
                 <Grid item sm={6}>
                     <InputText
