@@ -22,7 +22,9 @@ const InputText = (props) => {
 }
 
 const rows = {}
-const columns = {}
+const columns = [
+    { field: 'sablona', headerName: 'Šablona', width: 180 },
+    { field: 'file', headerName: 'Soubor', width: 180 },]
 
 const Novy = () => {
 
@@ -84,6 +86,7 @@ const Novy = () => {
                         />
                 </Grid>
             </Grid>
+            <DataGrid rows={rows} columns={columns}></DataGrid>
             </Box>
         </Box>
     )

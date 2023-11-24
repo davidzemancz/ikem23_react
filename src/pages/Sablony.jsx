@@ -26,7 +26,7 @@ import {
 const Sablony = () => {
     return(
         <Box sx={{m:2, mt:8}}>
-            <DataGrid editMode="row" rows={rows} columns={columns} slots={{
+            <DataGrid rows={rows} columns={columns} slots={{
           toolbar: EditToolbar,
         }}/>
         </Box>
@@ -36,66 +36,8 @@ const Sablony = () => {
 export default Sablony
 
 
+const rows = {}
 const columns = [
-    { field: 'name', headerName: 'Name', width: 180, editable: true },
-    {
-      field: 'age',
-      headerName: 'Age',
-      type: 'number',
-      editable: true,
-      align: 'left',
-      headerAlign: 'left',
-    },
-    {
-      field: 'dateCreated',
-      headerName: 'Date Created',
-      type: 'date',
-      width: 180,
-      editable: true,
-    },
-    {
-      field: 'lastLogin',
-      headerName: 'Last Login',
-      type: 'dateTime',
-      width: 220,
-      editable: true,
-    },
-  ];
-  
-  const rows = [
-    {
-      id: 1,
-      name: randomTraderName(),
-      age: 25,
-      dateCreated: randomCreatedDate(),
-      lastLogin: randomUpdatedDate(),
-    },
-    {
-      id: 2,
-      name: randomTraderName(),
-      age: 36,
-      dateCreated: randomCreatedDate(),
-      lastLogin: randomUpdatedDate(),
-    },
-    {
-      id: 3,
-      name: randomTraderName(),
-      age: 19,
-      dateCreated: randomCreatedDate(),
-      lastLogin: randomUpdatedDate(),
-    },
-    {
-      id: 4,
-      name: randomTraderName(),
-      age: 28,
-      dateCreated: randomCreatedDate(),
-      lastLogin: randomUpdatedDate(),
-    },
-    {
-      id: 5,
-      name: randomTraderName(),
-      age: 23,
-      dateCreated: randomCreatedDate(),
-      lastLogin: randomUpdatedDate(),
-    },
-  ];
+    { field: 'id', headerName: 'Id', width: 180 },
+    { field: 'name', headerName: 'Název', width: 180 },
+    { field: 'description', headerName: 'Popis', width: 180},]
