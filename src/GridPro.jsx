@@ -21,7 +21,7 @@ export default function RowGroupingBasicExample() {
   });
 
   return (
-    <Box style={{ height: 400, width: '100%' }}>
+    <Box style={{height: '100%', width: '100%' }}>
       <DataGridPremium {...data} apiRef={apiRef} initialState={initialState} />
     </Box>
   );
