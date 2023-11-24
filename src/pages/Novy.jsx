@@ -12,6 +12,7 @@ const InputText = (props) => {
     return (
         <Box sx={{ m: 1, p: 1, pl: 2, border: '1px solid', borderRadius: 2 }}>
             <TextField
+            required
                 variant="standard"
                 InputProps={{
                     disableUnderline: true,
