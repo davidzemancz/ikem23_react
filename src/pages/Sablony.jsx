@@ -25,10 +25,12 @@ import {
   }
 const Sablony = () => {
     return(
-        <Box sx={{m:2, mt:8}}>
+        <Box sx={{m:2, mt:8}} style={{width:'100%', height:'100%'}}>
+          <Box style={{width:'100%', height:'100%'}}>
             <DataGrid rows={rows} columns={columns} slots={{
           toolbar: EditToolbar,
         }}/>
+        </Box>
         </Box>
     )
 }
