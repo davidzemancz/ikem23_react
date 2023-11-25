@@ -27,11 +27,11 @@ import Novy from './pages/Novy';
 const drawerWidth = 240;
 
 const router = createBrowserRouter([
-  // {
-  //   path: "/",
-  //   element: <MainPage />,
+  {
+    path: "/",
+    element: <Box />,
 
-  // },
+  },
   {
     path: "/prehled",
     element: <Prehled />,
