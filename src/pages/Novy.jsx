@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Box, TextField, Grid, Button, Input, Autocomplete } from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
@@ -59,6 +59,19 @@ const Novy = () => {
         })
     const [files, setFiles] = useState([])
 
+    const [selectData, setselectData] = useState([])
+
+    useEffect (() =>{
+        axios.get('/ImportTemplate', { params: {} })
+        .then(res => {
+            console.log(res.data)
+            setselectData(res.data)
+            
+        })
+        .catch(ex => {
+            console.log(ex)
+        })
+    },[])
 
 
     const renderFileList = () => (
@@ -66,14 +79,14 @@ const Novy = () => {
             <Table size="small">
                 <TableHead>
                     <TableRow>
-                        <TableCell width='300'><b>Soubor</b></TableCell>
+                        <TableCell width='200'><b>Soubor</b></TableCell>
                         <TableCell><b>Typ</b></TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
                     {[...files].map((f, i) => (
                         <TableRow>
-                            <TableCell width='300'>{f.file.name}</TableCell>
+                            <TableCell width='200'>{f.file.name}</TableCell>
                             <TableCell >
                                 <FormControl fullWidth>
                                     <Select
@@ -87,12 +100,12 @@ const Novy = () => {
                                                 if (i === i2) return { ...f2, template: v.target.value }
                                                 else return f2
                                             }))
-                                        }}
-
-                                    >
-                                        <MenuItem value={1}>Šablona 1</MenuItem>
-                                        <MenuItem value={2}>420</MenuItem>
-                                        <MenuItem value={3}>David</MenuItem>
+                                        }}>
+                                            <MenuItem value={0}>---</MenuItem>
+                                            {selectData.map((sd) => (
+                                                <MenuItem id={sd.id} value={sd.id}>{sd.name}</MenuItem>
+                                            ))}
+                                        
                                     </Select>
                                 </FormControl>
                             </TableCell>
@@ -131,8 +144,9 @@ const Novy = () => {
 
     return (
         <Box sx={{ m: 2, mt: 8 }}>
-            <Box component="form" onSubmit={submit}>
-                <Grid container spacing={1} sx={{ width: '60vw' }}>
+            <Box component="form" onSubmit={submit} sx={{display:'flex',flexDirection:'row'}}>
+                <Box sx={{m:2}}>
+                <Grid container spacing={2} sx={{ width: '30vw' }}>
                     <Grid item sm={6}>
                         <InputText
                             label="ID pacienta"
@@ -206,22 +220,31 @@ const Novy = () => {
                         />
                     </Grid>
                 </Grid>
-
-                <Input
+                <Box sx={{width:'100%', display:'flex', justifyContent:'flex-start', mt:2}}>
+                    <Button type='submit'>
+                        Uložit
+                    </Button>
+                </Box>
+                </Box>
+                <Box sx={{m:2}}>
+                <Button containerElement='label' component="label" variant="outlined" sx={{ mb:2, borderRadius:2}}> 
+                Nahrajte soubory            
+                <input
                     type="file"
                     accept="docs/*"
-                    sx={{ m: 2, mt: 3 }}
-                    onChange={(e) => setFiles([...e.target.files].map((f) => { return { file: f, template: 1 } }))}
-                    inputProps={{ multiple: true }}
-                    disableUnderline={true}
+                    hidden
+                    multiple
+                    // sx={{ m: 2, mt: 3 }}
+                    onChange={(e) => setFiles([...e.target.files].map((f) => { return { file: f, template: 0 } }))}
+                    // inputProps={{ multiple: true }}
+                    // disableUnderline={true}
                 />
-
-                {renderFileList()}
-
-
-                <Button type='submit'>
-                    Uložit
                 </Button>
+
+                {files.length > 0 ? renderFileList() : <Box></Box>}
+
+
+                </Box>
             </Box>
         </Box>
     )
