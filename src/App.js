@@ -110,12 +110,12 @@ function App() {
               <ListItemText primary={'Přehled'} />
             </ListItemButton>
           </ListItem>
-          <ListItem key={'Nový'} disablePadding>
+          <ListItem key={'Nový záznam'} disablePadding>
             <ListItemButton component={Link} to="/novy">
               <ListItemIcon>
                 <MailIcon />
               </ListItemIcon>
-              <ListItemText primary={'Nový'} />
+              <ListItemText primary={'Nový záznam'} />
             </ListItemButton>
           </ListItem>
           <ListItem key={'Šablony'} disablePadding>
