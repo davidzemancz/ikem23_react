@@ -21,19 +21,41 @@ const Import = () => {
     const [files, setFiles] = useState([])
 
     const renderFileList = () => (
-        <TableContainer sx={{ width: '30vw' }}>
+        <TableContainer sx={{ width: '50vw' }}>
             <Table size="small">
                 <TableHead>
                     <TableRow>
-                        <TableCell width='200'><b>Soubor</b></TableCell>
-                        <TableCell><b>Šablona</b></TableCell>
+                        <TableCell width='300'><b>Soubor</b></TableCell>
+                        <TableCell width='200'><b>Šablona</b></TableCell>
                         <TableCell><b>Typ</b></TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
                     {[...files].map((f, i) => (
                         <TableRow>
-                            <TableCell width='200'>{f.file.name}</TableCell>
+                            <TableCell width='300'>{f.file.name}</TableCell>
+                            <TableCell width='200'>
+                                <FormControl fullWidth>
+                                    <Select
+                                        labelId="demo-simple-select-label"
+                                        id="demo-simple-select"
+                                        value={f.template}
+                                        size="small"
+                                        onChange={(v) => {
+                                            console.log(v)
+                                            setFiles((oldFiles) => oldFiles.map((f2, i2) => {
+                                                if (i === i2) return { ...f2, template: v.target.value }
+                                                else return f2
+                                            }))
+                                        }}>
+                                            <MenuItem value={0}>---</MenuItem>
+                                            {selectData.map((sd) => (
+                                                <MenuItem id={sd.id} value={sd.id}>{sd.name}</MenuItem>
+                                            ))}
+                                        
+                                    </Select>
+                                </FormControl>
+                            </TableCell>
                             <TableCell >
                                 <FormControl fullWidth>
                                     <Select
