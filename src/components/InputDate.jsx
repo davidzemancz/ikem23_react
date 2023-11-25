@@ -10,7 +10,7 @@ import dayjs from 'dayjs';
 const InputDate = (props) => {
     return(
         <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="cs">
-        <Box sx={{ p: 1, pl: 2, border: '1px solid', borderRadius: 2 }}>
+        <Box sx={{ p:1, border: '1px solid', borderRadius: 2 }}>
         <DatePicker label={props.label}  
           value={props.value}
           defaultValue={dayjs()}

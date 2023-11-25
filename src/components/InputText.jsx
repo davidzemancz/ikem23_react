@@ -4,7 +4,7 @@ import {TextField, Box} from "@mui/material";
 
 const InputText = (props) => {
     return (
-        <Box sx={{ p: 1, pl: 2,  border: '1px solid', borderRadius: 2 }}>
+        <Box sx={{  pl: 1, pt:1, border: '1px solid', borderRadius: 2 }}>
             <TextField
                 required={props.required}
                 multiline={props.multiline}
