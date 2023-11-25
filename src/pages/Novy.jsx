@@ -15,24 +15,28 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
+import InputText from '../components/InputText';
+import InputAutocomplete from '../components/InputAutocomplete';
+import InputDate from '../components/InputDate';
 
-const InputText = (props) => {
-    return (
-        <Box sx={{ p: 1, pl: 2, border: '1px solid', borderRadius: 2 }}>
-            <TextField
-            required
-                variant="standard"
-                InputProps={{
-                    disableUnderline: true,
-                }}
-                inputProps={props.inputProps}
-                InputLabelProps={{ shrink: true, style: { fontSize: 19 } }}
-                label={props.label}
-                sx={{ width: '100%' }}
-            />
-        </Box>
-    )
-}
+
+// const InputText = (props) => {
+//     return (
+//         <Box sx={{ p: 1, pl: 2, border: '1px solid', borderRadius: 2 }}>
+//             <TextField
+//             required
+//                 variant="standard"
+//                 InputProps={{
+//                     disableUnderline: true,
+//                 }}
+//                 inputProps={props.inputProps}
+//                 InputLabelProps={{ shrink: true, style: { fontSize: 19 } }}
+//                 label={props.label}
+//                 sx={{ width: '100%' }}
+//             />
+//         </Box>
+//     )
+// }
 
 const rows = {}
 const columns = [
@@ -146,12 +150,12 @@ const Novy = () => {
                         />
                     </Grid>
                     <Grid item sm={6}>
-                        <InputText
+                        <InputDate
                             label="Příjem LMP"
                         />
                     </Grid>
                     <Grid item sm={6}>
-                        <InputText
+                        <InputDate
                             label="Uzavření LMP"
                         />
                     </Grid>
