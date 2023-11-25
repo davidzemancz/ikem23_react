@@ -96,8 +96,8 @@ const EditSablony = () => {
                 }
             />
             </Box>
-            <Box sx={{width:'100%', display:'flex', justifyContent:'flex-end', mt:2}}>
-            <Button onClick={handleSubmit} variant='outlined'>Uložit</Button>
+            <Box sx={{width:'100%', display:'flex', justifyContent:'flex-end', mt:3}}>
+            <Button onClick={handleSubmit} variant='contained' sx={{width:'150px'}}>Uložit</Button>
             </Box>
         </Box>
             

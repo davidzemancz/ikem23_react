@@ -93,7 +93,7 @@ const Sablony = () => {
     return(
         <Box sx={{m:2, mt:8}} style={{width:'100%', height:'100%'}}>
           <Box style={{width:'100%', height:'83vh'}}>
-            <DataGrid rows={rows} columns={columns} 
+            <DataGrid rows={rows} columns={columns} sx={{width:'100%', height:'100%'}}
             pageSizeOptions={[]}
             slots={{
           toolbar: EditToolbar,
