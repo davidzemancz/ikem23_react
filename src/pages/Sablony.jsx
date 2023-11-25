@@ -8,6 +8,7 @@ import { GridRowModes,
 import Button from '@mui/material/Button';
 import EditIcon from '@mui/icons-material/Edit';
 import AddIcon from '@mui/icons-material/Add';
+import DeleteIcon from '@mui/icons-material/Delete';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from "react-router-dom";
@@ -23,23 +24,35 @@ import { useLocation, useNavigate } from "react-router-dom";
     );
   }
 const Sablony = () => {
+
+  const navigate = useNavigate();
+
   const [rows, setRows] = useState([])
 
   const columns = [
+    { field: 'id', headerName: 'Název', width: 200 },
     { field: 'name', headerName: 'Název', width: 200 },
     { field: 'description', headerName: 'Popis', width: 250},
     {
       field: " ",
       sortable: false,
-      width: 80,
+      width: 100,
       renderCell: (params) => {
         return (
+          <Box>
           <IconButton
             onClick={(e) => onButtonClick(e, params.row)}
             variant="contained"
           >
             <EditIcon></EditIcon>
           </IconButton>
+          <IconButton
+          onClick={(e) => DeleteTemplate(e, params.row)}
+          variant="contained"
+        >
+          <DeleteIcon/>
+        </IconButton>
+        </Box>
         );
       }
     }]
@@ -47,7 +60,25 @@ const Sablony = () => {
   const onButtonClick = (e, row) => {
     e.stopPropagation();
     console.log(row);
+    navigate('/sablony/edit',{state:{templateData: row}})
   };
+
+  const DeleteTemplate = (e,row) => {
+    e.stopPropagation();
+    axios.delete(`/ImportTemplate/${row.id}`, { params: {} })
+      .then(res =>{
+        axios.get('/ImportTemplate', { params: {} })
+        .then(res => {
+            setRows(res.data)
+        })
+        .catch(ex => {
+            console.log(ex)
+        });
+      })
+        .catch(ex => {
+            console.log(ex)
+        });
+  }
 
     useEffect (() =>{
         axios.get('/ImportTemplate', { params: {} })
