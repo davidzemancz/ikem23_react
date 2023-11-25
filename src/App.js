@@ -67,7 +67,7 @@ function App() {
   };
 
   return (
-    <Box className="App" sx={{ display: 'flex', overflow:'hidden' }}>
+    <Box className="App" sx={{ display: 'flex', overflow:'hidden', width: '100%' }}>
       <AppBar position="fixed">
         <Toolbar sx={{display:'flex'}}>
         <List sx={{display:'flex'}}>
@@ -76,7 +76,12 @@ function App() {
               <ListItemText primary={'Přehled'} />
             </ListItemButton>
           </ListItem>
-          <ListItem key={'Nový záznam'} disablePadding sx={{width:'150px'}}>
+          <ListItem key={'Statistiky'} disablePadding sx={{width:'100px'}}>
+            <ListItemButton component={Link} to="/prehled">
+              <ListItemText primary={'Statistiky'} />
+            </ListItemButton>
+          </ListItem>
+          <ListItem key={'Nový záznam'} disablePadding sx={{width:'140px'}}>
             <ListItemButton component={Link} to="/novy">
               <ListItemText primary={'Nový záznam'} />
             </ListItemButton>
@@ -84,6 +89,11 @@ function App() {
           <ListItem key={'Šablony'} disablePadding sx={{width:'100px'}}>
             <ListItemButton component={Link} to="/sablony">
               <ListItemText primary={'Šablony'} />
+            </ListItemButton>
+          </ListItem>
+          <ListItem key={'Import'} disablePadding sx={{width:'100px'}}>
+            <ListItemButton component={Link} to="/prehled">
+              <ListItemText primary={'Import'} />
             </ListItemButton>
           </ListItem>
           </List>
@@ -128,7 +138,7 @@ function App() {
         </List>
       </Drawer> */}
 
-      <Box component="main" sx={{p:2, pt:4}}>
+      <Box component="main" sx={{ m:2, width:'96%'}}>
         <RouterProvider router={router} />
       </Box>
 
