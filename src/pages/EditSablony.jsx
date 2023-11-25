@@ -81,7 +81,8 @@ const EditSablony = () => {
             />
             </Box>
 
-             <Box style={{width:'100%', height:'70vh'}}>
+             <Box style={{width:'100%', height:'100%'}}>
+            <Box style={{width:'100%', height:'70vh'}}>
             <DataGrid 
                 editMode="row"
                 rows={rows} columns={columns}
@@ -92,7 +93,8 @@ const EditSablony = () => {
                 }))
                 }
             />
-            <Box sx={{width:'100%', display:'flex', justifyContent:'flex-end'}}>
+            </Box>
+            <Box sx={{width:'100%', display:'flex', justifyContent:'flex-end', mt:2}}>
             <Button onClick={handleSubmit}>Uložit</Button>
             </Box>
         </Box>
