@@ -45,6 +45,10 @@ const router = createBrowserRouter([
     element: <EditSablony/>,
   },
   {
+    path: "/sablony/edit",
+    element: <EditSablony/>,
+  },
+  {
     path: "/novy",
     element: <Novy />,
   },
