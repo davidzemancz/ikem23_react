@@ -4,9 +4,10 @@ import {TextField, Box} from "@mui/material";
 
 const InputText = (props) => {
     return (
-        <Box sx={{ p: 1, pl: 2, border: '1px solid', borderRadius: 2 }}>
+        <Box sx={{ p: 1, pl: 2,m:1,  border: '1px solid', borderRadius: 2 }}>
             <TextField
-            required
+                required={props.required}
+                multiline={props.multiline}
                 variant="standard"
                 InputProps={{
                     disableUnderline: true,
@@ -14,6 +15,8 @@ const InputText = (props) => {
                 inputProps={props.inputProps}
                 InputLabelProps={{ shrink: true, style: { fontSize: 19 } }}
                 label={props.label}
+                value={props.value}
+                onChange={props.onChange}
                 sx={{ width: '100%' }}
             />
         </Box>
