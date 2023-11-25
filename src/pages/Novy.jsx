@@ -1,8 +1,6 @@
 import * as React from 'react';
-import { Box, TextField, Grid, Button, Input, Autocomplete } from '@mui/material';
-import { DataGrid } from '@mui/x-data-grid';
+import { Box, Grid, Button} from '@mui/material';
 import { useState, useEffect } from 'react';
-import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
@@ -13,7 +11,6 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
 
 import InputText from '../components/InputText';
 import InputAutocomplete from '../components/InputAutocomplete';
@@ -59,6 +56,8 @@ const Novy = () => {
         })
     const [files, setFiles] = useState([])
 
+    const [patients, setPatients] = React.useState([])
+
     const [selectData, setselectData] = useState([])
 
     useEffect (() =>{
@@ -66,6 +65,15 @@ const Novy = () => {
         .then(res => {
             console.log(res.data)
             setselectData(res.data)
+            
+        })
+        .catch(ex => {
+            console.log(ex)
+        })
+        axios.get('/Patient', { params: {} })
+        .then(res => {
+            setPatients(res.data)
+            console.log(patients)
             
         })
         .catch(ex => {
@@ -147,16 +155,24 @@ const Novy = () => {
             <Box component="form" onSubmit={submit} sx={{display:'flex',flexDirection:'row'}}>
                 <Box sx={{m:2}}>
                 <Grid container spacing={2} sx={{ width: '30vw' }}>
-                    <Grid item sm={6}>
-                        <InputText
+                    <Grid item sm={8}>
+                        {/* <InputText
                             label="ID pacienta"
                             value={patientRecord.pacientId}
                             onChange={(event) => {
                                 setPatientRecord((oldData) => ({ ...oldData, pacientId: event.target.value }))
                             }}
-                        />
+                        /> */}
+                        <InputAutocomplete
+                        label="ID pacienta"
+                        options={patients.map(option => ({id: option.id, label: `${option.name[0].given[0]} ${option.name[0].family}`}))}
+                        inputValue={patientRecord.pacientId}
+                        onInputChange={(event, newInputValue) => {
+                            setPatientRecord((oldData) => ({ ...oldData, pacientId: newInputValue }))
+                        }}>
+                        </InputAutocomplete>
                     </Grid>
-                    <Grid item sm={6}>
+                    <Grid item sm={4}>
                         <InputText
                             label="Kód pojišťovny"
                             value={patientRecord.kodPojistovna}
