@@ -50,7 +50,7 @@ const Novy = () => {
             diagnoza: '',
             onkologickyKod: '',
             pomerNadorovychBunek: '',
-            //idBiopsie
+            idBiopsie: '',
             prijemLMP: dayjs(),
             uzavreniLMP: dayjs()
         })
@@ -215,6 +215,16 @@ const Novy = () => {
                             }}
                         />
                     </Grid>
+                    <Grid item sm={6}>
+                        <InputText
+                            label="ID Biopsie"
+                            value={patientRecord.idBiopsie}
+                            onChange={(event) => {
+                                setPatientRecord((oldData) => ({ ...oldData, idBiopsie: event.target.value }))
+                            }}
+                        /></Grid>
+                        <Grid item sm={6}>
+                        </Grid>
                     <Grid item sm={6}>
                         <InputDate
                             label="Příjem LMP"
