@@ -61,19 +61,18 @@ const Import = () => {
                                     <Select
                                         labelId="demo-simple-select-label"
                                         id="demo-simple-select"
-                                        value={f.template}
+                                        value={f.type}
                                         size="small"
                                         onChange={(v) => {
                                             console.log(v)
                                             setFiles((oldFiles) => oldFiles.map((f2, i2) => {
-                                                if (i === i2) return { ...f2, template: v.target.value }
+                                                if (i === i2) return { ...f2, type: v.target.value }
                                                 else return f2
                                             }))
                                         }}>
                                             <MenuItem value={0}>---</MenuItem>
-                                            {selectData.map((sd) => (
-                                                <MenuItem id={sd.id} value={sd.id}>{sd.name}</MenuItem>
-                                            ))}
+                                            <MenuItem value={1}>Patient</MenuItem>
+                                            <MenuItem value={2}>DG</MenuItem>
                                         
                                     </Select>
                                 </FormControl>
@@ -106,6 +105,7 @@ const Import = () => {
         [...files].forEach((file, i) => {
             data.append(`file-${i}`, file.file, file.file.name)
             data.append(`file-${i}-template`, file.template)
+            data.append(`file-${i}-type`, file.type)
         })}
 
     
