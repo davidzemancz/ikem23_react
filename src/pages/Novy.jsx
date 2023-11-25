@@ -117,7 +117,7 @@ const Novy = () => {
     )
 
     const submit = (e) => {
-        e.preventDefault();
+        // e.preventDefault();
 
         const data = new FormData();
 
