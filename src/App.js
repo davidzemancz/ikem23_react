@@ -69,19 +69,27 @@ function App() {
   return (
     <Box className="App" sx={{ display: 'flex', overflow:'hidden' }}>
       <AppBar position="fixed">
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            sx={{ mr: 2, ...(open && { display: 'none' }) }}
-          >
-            <MenuIcon />
-          </IconButton>
+        <Toolbar sx={{display:'flex'}}>
+        <List sx={{display:'flex'}}>
+          <ListItem key={'Přehled'} disablePadding sx={{width:'100px'}}>
+            <ListItemButton component={Link} to="/prehled">
+              <ListItemText primary={'Přehled'} />
+            </ListItemButton>
+          </ListItem>
+          <ListItem key={'Nový záznam'} disablePadding sx={{width:'150px'}}>
+            <ListItemButton component={Link} to="/novy">
+              <ListItemText primary={'Nový záznam'} />
+            </ListItemButton>
+          </ListItem>
+          <ListItem key={'Šablony'} disablePadding sx={{width:'100px'}}>
+            <ListItemButton component={Link} to="/sablony">
+              <ListItemText primary={'Šablony'} />
+            </ListItemButton>
+          </ListItem>
+          </List>
         </Toolbar>
       </AppBar>
-      <Drawer
+      {/* <Drawer
         sx={{
           width: drawerWidth,
           flexShrink: 0,
@@ -117,33 +125,10 @@ function App() {
               <ListItemText primary={'Šablony'} />
             </ListItemButton>
           </ListItem>
-          {/* {['Přehled', 'Nový', 'Šablony'].map((text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
-          ))} */}
         </List>
-        {/* <Divider />
-        <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List> */}
-      </Drawer>
+      </Drawer> */}
 
-      <Box component="main" sx={{pt:2}}>
+      <Box component="main" sx={{p:2, pt:4}}>
         <RouterProvider router={router} />
       </Box>
 
