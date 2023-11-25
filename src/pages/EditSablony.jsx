@@ -4,7 +4,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import InputText from '../components/InputText';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-import { useLocation } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 
 const columns = [
     { field: 'id', headerName: 'Datová položka', width: 180, editable: false, },
@@ -16,6 +16,7 @@ const columns = [
 const EditSablony = () => {
 
     const location = useLocation();
+    const navigate = useNavigate();
 
     const [template, setTemplate] = useState({ id: 0, name: '', description: '', sheetNumber: 1 })
 
@@ -56,6 +57,7 @@ const EditSablony = () => {
             .catch(ex => {
                 console.log(ex)
             });
+        navigate('/sablony')
     }
 
     return(
@@ -81,7 +83,8 @@ const EditSablony = () => {
             />
             </Box>
 
-             <Box style={{width:'100%', height:'70vh'}}>
+             <Box style={{width:'100%', height:'100%'}}>
+            <Box style={{width:'100%', height:'70vh'}}>
             <DataGrid 
                 editMode="row"
                 rows={rows} columns={columns}
@@ -92,7 +95,8 @@ const EditSablony = () => {
                 }))
                 }
             />
-            <Box sx={{width:'100%', display:'flex', justifyContent:'flex-end'}}>
+            </Box>
+            <Box sx={{width:'100%', display:'flex', justifyContent:'flex-end', mt:2}}>
             <Button onClick={handleSubmit}>Uložit</Button>
             </Box>
         </Box>

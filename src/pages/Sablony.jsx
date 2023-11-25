@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Box, IconButton } from '@mui/material';
+import { Box, IconButton, Link } from '@mui/material';
 import { GridRowModes,
     DataGrid,
     GridToolbarContainer,
@@ -17,7 +17,7 @@ import { useLocation, useNavigate } from "react-router-dom";
   
     return (
       <GridToolbarContainer>
-        <Button color="primary" startIcon={<AddIcon />}>
+        <Button color="primary" component={Link} href='/sablony/pridat' startIcon={<AddIcon />}>
           Nová šablona
         </Button>
       </GridToolbarContainer>
