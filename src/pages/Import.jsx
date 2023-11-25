@@ -26,6 +26,7 @@ const Import = () => {
                 <TableHead>
                     <TableRow>
                         <TableCell width='200'><b>Soubor</b></TableCell>
+                        <TableCell><b>Šablona</b></TableCell>
                         <TableCell><b>Typ</b></TableCell>
                     </TableRow>
                 </TableHead>
@@ -102,6 +103,10 @@ const Import = () => {
                     // disableUnderline={true}
                 />
                 </Button>
+           
+                <Button type='submit' variant='contained' sx={{ mb:2, ml:2,  borderRadius:2, height:'36px'}}>
+                        Uložit
+                    </Button>
 
                 {files.length > 0 ? renderFileList() : <Box></Box>}
 
