@@ -48,7 +48,7 @@ const Novy = () => {
 
     const [patientRecord, setPatientRecord] = useState(
         {
-            patientId: '',
+            pacientId: '',
             kodPojistovna: '',
             diagnoza: '',
             onkologickyKod: '',
@@ -113,8 +113,14 @@ const Novy = () => {
             data.append(`file-${i}-template`, file.template)
         })
 
-
-        data.append('IdBiopsie', patientRecord.patientId)
+        data.append('pacientId', patientRecord.pacientId)
+        data.append('kodPojistovna', patientRecord.kodPojistovna)
+        data.append('diagnoza', patientRecord.diagnoza)
+        data.append('onkologickyKod', patientRecord.onkologickyKod)
+        data.append('pomerNadorovychBunek', patientRecord.pomerNadorovychBunek)
+        data.append('idBiopsie', patientRecord.idBiopsie)
+        data.append('prijemLMP', patientRecord.prijemLMP.format("MM/DD/YYYY"))
+        data.append('uzavreniLMP', patientRecord.uzavreniLMP.format("MM/DD/YYYY"))
 
         axios.post('patientRecord/create', data)
             .catch(ex => {
@@ -130,9 +136,9 @@ const Novy = () => {
                     <Grid item sm={6}>
                         <InputText
                             label="ID pacienta"
-                            value={patientRecord.patientId}
+                            value={patientRecord.pacientId}
                             onChange={(event) => {
-                                setPatientRecord((oldData) => ({ ...oldData, patientId: event.target.value }))
+                                setPatientRecord((oldData) => ({ ...oldData, pacientId: event.target.value }))
                             }}
                         />
                     </Grid>
