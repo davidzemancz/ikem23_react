@@ -221,7 +221,7 @@ const Novy = () => {
                     </Grid>
                 </Grid>
                 <Box sx={{width:'100%', display:'flex', justifyContent:'flex-start', mt:2}}>
-                    <Button type='submit'>
+                    <Button type='submit' variant='outlined'>
                         Uložit
                     </Button>
                 </Box>
