@@ -148,7 +148,7 @@ function App() {
         </List> */}
       </Drawer>
 
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+      <Box component="main" sx={{  p: 3 }}>
         <RouterProvider router={router} />
       </Box>
 
