@@ -41,7 +41,7 @@ const router = createBrowserRouter([
     element: <Sablony />,
   },
   {
-    path: "/edit/:id",
+    path: "/sablony/pridat",
     element: <EditSablony/>,
   },
   {
@@ -148,7 +148,7 @@ function App() {
         </List> */}
       </Drawer>
 
-      <Box component="main" sx={{  p: 3 }}>
+      <Box component="main" sx={{ p: 3 }}>
         <RouterProvider router={router} />
       </Box>
 
