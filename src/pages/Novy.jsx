@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Box, TextField, Grid, Button } from '@mui/material';
+import { Box, TextField, Grid, Button, Input, Autocomplete } from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
 import { useState } from 'react';
 import InputLabel from '@mui/material/InputLabel';
@@ -7,10 +7,18 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import axios from 'axios';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+
 
 const InputText = (props) => {
     return (
-        <Box sx={{ m: 1, p: 1, pl: 2, border: '1px solid', borderRadius: 2 }}>
+        <Box sx={{ p: 1, pl: 2, border: '1px solid', borderRadius: 2 }}>
             <TextField
             required
                 variant="standard"
@@ -49,36 +57,37 @@ const Novy = () => {
    
 
     const renderFileList = () => (
-        <table>
-            <thead>
-                <tr>
-                    <th>Soubor</th>
-                    <th>Typ</th>
-                </tr>
-            </thead>
-            <tbody>
+        <TableContainer sx={{width:'30vw'}}>
+        <Table size="small">
+            <TableHead>
+                <TableRow>
+                    <TableCell width='300'>Soubor</TableCell>
+                    <TableCell>Typ</TableCell>
+                </TableRow>
+            </TableHead>
+            <TableBody>
                 {[...files].map((f, i) => (
-                    <tr>
-                        <td>{f.name}</td>
-                        <td>
+                    <TableRow>
+                        <TableCell width='300'>{f.name}</TableCell>
+                        <TableCell >
                             <FormControl fullWidth>
-                                <InputLabel id="demo-simple-select-label">Age</InputLabel>
                                 <Select
                                     labelId="demo-simple-select-label"
                                     id="demo-simple-select"
-                                    value={10}
-                                    label="Age"
+                                    value={1}
+                                    size="small"
                                 >
-                                    <MenuItem value={10}>Ten</MenuItem>
-                                    <MenuItem value={20}>Twenty</MenuItem>
-                                    <MenuItem value={30}>Thirty</MenuItem>
+                                    <MenuItem value={1}>Šablona 1</MenuItem>
+                                    <MenuItem value={2}>420</MenuItem>
+                                    <MenuItem value={3}>David</MenuItem>
                                 </Select>
                             </FormControl>
-                        </td>
-                    </tr>
+                        </TableCell>
+                    </TableRow>
                 ))}
-            </tbody>
-        </table>
+            </TableBody>
+        </Table>
+        </TableContainer>
     )
 
     const submit = (e) =>{
@@ -102,8 +111,8 @@ const Novy = () => {
 
     return (
         <Box sx={{ m: 2, mt: 8 }}>
-            <Box component="form" sx={{ width: '60vw' }} onSubmit={submit}>
-                <Grid container spacing={2}>
+            <Box component="form" onSubmit={submit}>
+                <Grid container spacing={1} sx={{ width: '60vw'}}>
                     <Grid item sm={6}>
                         <InputText
                             label="ID pacienta"
@@ -148,14 +157,15 @@ const Novy = () => {
                     </Grid>
                 </Grid>
 
-                <input
+                <Input
                     type="file"
                     accept="docs/*"
-                    multiple
-                    onChange={(e) => setFiles(e.target.files)} />
-                {
-                    renderFileList()
-                }
+                    sx={{m:2, mt:3}}                    
+                    onChange={(e) => setFiles(e.target.files)}
+                    inputProps={{ multiple: true }} />
+
+                    {renderFileList()}
+                
 
                 <Button type='submit'>
                     Uložit
