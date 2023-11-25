@@ -50,6 +50,7 @@ const EditSablony = () => {
             { id: template.id, name: template.name, description: template.description, sheetNumber: template.sheetNumber, columnMapping: rows} :
             { name: template.name, description: template.description, sheetNumber: template.sheetNumber, columnMapping: rows}
         
+        console.log(template.id)
         // console.log(templateData)
         axios.post('/ImportTemplate', templateData )
             .catch(ex => {
@@ -61,6 +62,7 @@ const EditSablony = () => {
         <Box sx={{m:2, mt:8, display: 'flex', flexDirection:'row'}} style={{width:'100%', height:'100%'}}>
             
             <Box sx={{width: '30vw', mr: 2}}>
+                <Box sx={{mb:2}}>
             <InputText 
                 required
                 label='Název šablony'
@@ -69,6 +71,7 @@ const EditSablony = () => {
                     setTemplate((oldData) => ({...oldData, name: event.target.value}))
                   }}
             />
+            </Box>
             <InputText 
                 label='Popis'
                 value={template.description}
