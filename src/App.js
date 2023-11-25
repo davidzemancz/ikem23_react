@@ -1,4 +1,4 @@
-// import './App.css';
+
 import { Box, Toolbar, Link} from '@mui/material';
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
@@ -67,7 +67,7 @@ function App() {
   };
 
   return (
-    <Box className="App" sx={{ display: 'flex' }}>
+    <Box className="App" sx={{ display: 'flex', overflow:'hidden' }}>
       <AppBar position="fixed">
         <Toolbar>
           <IconButton
@@ -152,7 +152,7 @@ function App() {
         </List> */}
       </Drawer>
 
-      <Box component="main" sx={{ p: 3 }}>
+      <Box component="main" sx={{pt:2}}>
         <RouterProvider router={router} />
       </Box>
 
