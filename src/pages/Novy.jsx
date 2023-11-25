@@ -65,8 +65,8 @@ const Novy = () => {
         <Table size="small">
             <TableHead>
                 <TableRow>
-                    <TableCell width='300'>Soubor</TableCell>
-                    <TableCell>Typ</TableCell>
+                    <TableCell width='300'><b>Soubor</b></TableCell>
+                    <TableCell><b>Typ</b></TableCell>
                 </TableRow>
             </TableHead>
             <TableBody>
@@ -166,7 +166,9 @@ const Novy = () => {
                     accept="docs/*"
                     sx={{m:2, mt:3}}                    
                     onChange={(e) => setFiles(e.target.files)}
-                    inputProps={{ multiple: true }} />
+                    inputProps={{ multiple: true }}
+                    disableUnderline={true}
+                     />
 
                     {renderFileList()}
                 
