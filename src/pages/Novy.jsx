@@ -18,6 +18,7 @@ import Paper from '@mui/material/Paper';
 import InputText from '../components/InputText';
 import InputAutocomplete from '../components/InputAutocomplete';
 import InputDate from '../components/InputDate';
+import dayjs from 'dayjs';
 
 
 // const InputText = (props) => {
@@ -47,84 +48,101 @@ const Novy = () => {
 
     const [patientRecord, setPatientRecord] = useState(
         {
-            patientId: undefined,
-            kodPojistovna: undefined,
-            diagnoza: undefined,
-            onkologickyKod: undefined,
-            pomerNadorovychBunek: undefined,
+            patientId: '',
+            kodPojistovna: '',
+            diagnoza: '',
+            onkologickyKod: '',
+            pomerNadorovychBunek: '',
             //idBiopsie
-            prijemLMP: undefined,
-            uzavreniLMP: undefined
+            prijemLMP: dayjs(),
+            uzavreniLMP: dayjs()
         })
     const [files, setFiles] = useState([])
 
-   
+
 
     const renderFileList = () => (
-        <TableContainer sx={{width:'30vw'}}>
-        <Table size="small">
-            <TableHead>
-                <TableRow>
-                    <TableCell width='300'><b>Soubor</b></TableCell>
-                    <TableCell><b>Typ</b></TableCell>
-                </TableRow>
-            </TableHead>
-            <TableBody>
-                {[...files].map((f, i) => (
+        <TableContainer sx={{ width: '30vw' }}>
+            <Table size="small">
+                <TableHead>
                     <TableRow>
-                        <TableCell width='300'>{f.name}</TableCell>
-                        <TableCell >
-                            <FormControl fullWidth>
-                                <Select
-                                    labelId="demo-simple-select-label"
-                                    id="demo-simple-select"
-                                    value={1}
-                                    size="small"
-                                >
-                                    <MenuItem value={1}>Šablona 1</MenuItem>
-                                    <MenuItem value={2}>420</MenuItem>
-                                    <MenuItem value={3}>David</MenuItem>
-                                </Select>
-                            </FormControl>
-                        </TableCell>
+                        <TableCell width='300'><b>Soubor</b></TableCell>
+                        <TableCell><b>Typ</b></TableCell>
                     </TableRow>
-                ))}
-            </TableBody>
-        </Table>
+                </TableHead>
+                <TableBody>
+                    {[...files].map((f, i) => (
+                        <TableRow>
+                            <TableCell width='300'>{f.file.name}</TableCell>
+                            <TableCell >
+                                <FormControl fullWidth>
+                                    <Select
+                                        labelId="demo-simple-select-label"
+                                        id="demo-simple-select"
+                                        value={f.template}
+                                        size="small"
+                                        onChange={(v) => {
+                                            console.log(v)
+                                            setFiles((oldFiles) => oldFiles.map((f2, i2) => {
+                                                if (i === i2) return { ...f2, template: v.target.value }
+                                                else return f2
+                                            }))
+                                        }}
+
+                                    >
+                                        <MenuItem value={1}>Šablona 1</MenuItem>
+                                        <MenuItem value={2}>420</MenuItem>
+                                        <MenuItem value={3}>David</MenuItem>
+                                    </Select>
+                                </FormControl>
+                            </TableCell>
+                        </TableRow>
+                    ))}
+                </TableBody>
+            </Table>
         </TableContainer>
     )
 
-    const submit = (e) =>{
+    const submit = (e) => {
         e.preventDefault();
-        
 
         const data = new FormData();
 
         [...files].forEach((file, i) => {
-            data.append(`file-${i}`, file, file.name)
+            data.append(`file-${i}`, file.file, file.file.name)
+            data.append(`file-${i}-template`, file.template)
         })
+
 
         data.append('IdBiopsie', patientRecord.patientId)
 
-        axios.post('patientRecord/create',data)
-        .catch(ex => {
-            console.log(ex)
-        })
+        axios.post('patientRecord/create', data)
+            .catch(ex => {
+                console.log(ex)
+            })
 
     }
 
     return (
         <Box sx={{ m: 2, mt: 8 }}>
             <Box component="form" onSubmit={submit}>
-                <Grid container spacing={1} sx={{ width: '60vw'}}>
+                <Grid container spacing={1} sx={{ width: '60vw' }}>
                     <Grid item sm={6}>
                         <InputText
                             label="ID pacienta"
+                            value={patientRecord.patientId}
+                            onChange={(event) => {
+                                setPatientRecord((oldData) => ({ ...oldData, patientId: event.target.value }))
+                            }}
                         />
                     </Grid>
                     <Grid item sm={6}>
                         <InputText
                             label="Kód pojišťovny"
+                            value={patientRecord.kodPojistovna}
+                            onChange={(event) => {
+                                setPatientRecord((oldData) => ({ ...oldData, kodPojistovna: event.target.value }))
+                            }}
                             inputProps={{
                                 inputMode: "numeric",
                             }}
@@ -133,16 +151,28 @@ const Novy = () => {
                     <Grid item sm={12}>
                         <InputText
                             label="Diagnóza"
+                            value={patientRecord.diagnoza}
+                            onChange={(event) => {
+                                setPatientRecord((oldData) => ({ ...oldData, diagnoza: event.target.value }))
+                            }}
                         />
                     </Grid>
                     <Grid item sm={6}>
                         <InputText
                             label="Onkologický kód"
+                            value={patientRecord.onkologickyKod}
+                            onChange={(event) => {
+                                setPatientRecord((oldData) => ({ ...oldData, onkologickyKod: event.target.value }))
+                            }}
                         />
                     </Grid>
                     <Grid item sm={6}>
                         <InputText
                             label="% nádorových buněk"
+                            value={patientRecord.pomerNadorovychBunek}
+                            onChange={(event) => {
+                                setPatientRecord((oldData) => ({ ...oldData, pomerNadorovychBunek: event.target.value }))
+                            }}
                             inputProps={{
                                 inputMode: "numeric",
                                 pattern: "[0-9]*"
@@ -152,11 +182,21 @@ const Novy = () => {
                     <Grid item sm={6}>
                         <InputDate
                             label="Příjem LMP"
+                            value={patientRecord.prijemLMP}
+                            onChange={
+                                (newValue) => {
+                                    setPatientRecord((oldData) => ({ ...oldData, prijemLMP: newValue }))
+                                }}
                         />
                     </Grid>
                     <Grid item sm={6}>
                         <InputDate
                             label="Uzavření LMP"
+                            value={patientRecord.uzavreniLMP}
+                            onChange={
+                                (newValue) => {
+                                    setPatientRecord((oldData) => ({ ...oldData, uzavreniLMP: newValue }))
+                                }}
                         />
                     </Grid>
                 </Grid>
@@ -164,14 +204,14 @@ const Novy = () => {
                 <Input
                     type="file"
                     accept="docs/*"
-                    sx={{m:2, mt:3}}                    
-                    onChange={(e) => setFiles(e.target.files)}
+                    sx={{ m: 2, mt: 3 }}
+                    onChange={(e) => setFiles([...e.target.files].map((f) => { return { file: f, template: 1 } }))}
                     inputProps={{ multiple: true }}
                     disableUnderline={true}
-                     />
+                />
 
-                    {renderFileList()}
-                
+                {renderFileList()}
+
 
                 <Button type='submit'>
                     Uložit
