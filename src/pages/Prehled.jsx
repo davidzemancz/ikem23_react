@@ -7,11 +7,28 @@ import {
   useKeepGroupedColumnsHidden,
 } from '@mui/x-data-grid-premium';
 import { useMovieData } from '@mui/x-data-grid-generator';
-import { Box } from '@mui/material';
+import { Box, Select, MenuItem } from '@mui/material';
 import RowGroupingBasicExample from '../GridPro';
 import axios from 'axios';
 
 const columns = [
+    {
+        field: " ",
+        sortable: false,
+        width: 100,
+        renderCell: (params) => {
+          return (
+            <Box sx={{p:1}}>
+            <Select>
+                <MenuItem value={0}>---</MenuItem>
+                <MenuItem value={1}>1</MenuItem>
+                <MenuItem value={2}>2</MenuItem>
+                <MenuItem value={2}>3</MenuItem>
+            </Select>
+            </Box>
+          );
+        }
+      },
     { field: 'id', headerName: 'ID', width: 150 },
     { field: 'idBiopsie', headerName: 'ID biopsie', width: 150 },
     { field: 'projekt', headerName: 'Projekt', width: 150 },
