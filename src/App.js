@@ -23,6 +23,7 @@ import Sablony from './pages/Sablony';
 import EditSablony from './pages/EditSablony';
 import Prehled from './pages/Prehled';
 import Novy from './pages/Novy';
+import Import from './pages/Import';
 
 const drawerWidth = 240;
 
@@ -47,6 +48,10 @@ const router = createBrowserRouter([
   {
     path: "/sablony/edit",
     element: <EditSablony/>,
+  },
+  {
+    path: "/import",
+    element: <Import/>,
   },
   {
     path: "/novy",
@@ -92,7 +97,7 @@ function App() {
             </ListItemButton>
           </ListItem>
           <ListItem key={'Import'} disablePadding sx={{width:'100px'}}>
-            <ListItemButton component={Link} to="/prehled">
+            <ListItemButton component={Link} to="/import">
               <ListItemText primary={'Import'} />
             </ListItemButton>
           </ListItem>
