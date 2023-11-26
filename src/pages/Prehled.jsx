@@ -85,7 +85,7 @@ const columns = [
       },
     },
     '&& .possiblyProblematic': {
-      backgroundColor: '#EEF296',
+      backgroundColor: '#EEF296cc',
       '&:hover': {
         backgroundColor: '#EEF296',
       },
