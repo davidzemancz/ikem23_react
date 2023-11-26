@@ -13,17 +13,17 @@ import axios from 'axios';
 
 const columns = [
     {
-        field: " ",
+        field: "mark",
         sortable: false,
-        width: 100,
+        width: 120,
         renderCell: (params) => {
           return (
-            <Box sx={{p:1}}>
-            <Select>
+            <Box sx={{p:1,width:'100%'}} >
+            <Select size='small' sx={{width:'80%'}} defaultValue={0}>
                 <MenuItem value={0}>---</MenuItem>
                 <MenuItem value={1}>1</MenuItem>
                 <MenuItem value={2}>2</MenuItem>
-                <MenuItem value={2}>3</MenuItem>
+                <MenuItem value={3}>3</MenuItem>
             </Select>
             </Box>
           );
@@ -67,6 +67,45 @@ const columns = [
     { field: 'exonNumber', headerName: 'Exon Number', width: 150 },
     { field: 'typeOfMutation', headerName: 'Type of mutation', width: 150 },
   ];
+
+  const StyledDataGrid = styled(DataGridPremium)(() => ({
+    '& .OK': {
+      backgroundColor: '#9ADE7B80',
+      '&:hover': {
+        backgroundColor: '#9ADE7B',
+      },
+      '&.Mui-selected': {
+        backgroundColor: '#9ADE7B',
+        '&:hover': {
+            backgroundColor: '#9ADE7B',
+        },
+      },
+    },
+    '& .possiblyProblematic': {
+      backgroundColor: '#EEF296',
+      '&:hover': {
+        backgroundColor: '#EEF296',
+      },
+      '&.Mui-selected': {
+        backgroundColor: '#EEF296',
+        '&:hover': {
+            backgroundColor: '#EEF296',
+        },
+      },
+    },
+    '& .danger': {
+      backgroundColor: '#FF8F8Faa',
+      '&:hover': {
+        backgroundColor: '#FF8F8F',
+      },
+      '&.Mui-selected': {
+        backgroundColor: '#FF8F8F',
+        '&:hover': {
+            backgroundColor: '#FF8F8F',
+        },
+      },
+    },
+  }));
   
 
 
@@ -83,9 +122,17 @@ const Prehled = () => {
 
     return(
         <Box sx={{m:2, mt:8, height:'80vh'}}>
-            <DataGridPremium columns={columns} rows={rows} />
+            <StyledDataGrid columns={columns} rows={rows} 
+            getRowClassName={(params) => 'danger'}
+            />
         </Box>
     )
 }
 
+const getRowClass = ({mark}) => {
+    if (mark === 0){return ''}
+    else if (mark === 1){return 'OK'}
+    else if (mark === 2){return 'possiblyProblematic'}
+    else if (mark === 3){return 'danger'}
+}
 export default Prehled
