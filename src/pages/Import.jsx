@@ -71,7 +71,7 @@ const Import = () => {
                                             }))
                                         }}>
                                             <MenuItem value={0}>---</MenuItem>
-                                            <MenuItem value={1}>Patient</MenuItem>
+                                            <MenuItem value={1}>Pacient</MenuItem>
                                             <MenuItem value={2}>DG</MenuItem>
                                         
                                     </Select>
