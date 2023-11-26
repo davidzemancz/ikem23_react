@@ -87,14 +87,14 @@ const Novy = () => {
             <Table size="small">
                 <TableHead>
                     <TableRow>
-                        <TableCell width='200'><b>Soubor</b></TableCell>
+                        <TableCell width='100'><b>Soubor</b></TableCell>
                         <TableCell><b>Šablona</b></TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
                     {[...files].map((f, i) => (
                         <TableRow>
-                            <TableCell width='200'>{f.file.name}</TableCell>
+                            <TableCell width='100'>{f.file.name}</TableCell>
                             <TableCell >
                                 <FormControl fullWidth>
                                     <Select
@@ -154,7 +154,7 @@ const Novy = () => {
         <Box sx={{ m: 2, mt: 8 }}>
             <Box component="form" onSubmit={submit} sx={{display:'flex',flexDirection:'row'}}>
                 <Box sx={{m:2}}>
-                <Grid container spacing={2} sx={{ width: '30vw' }}>
+                <Grid container spacing={2} sx={{ width: '40vw' }}>
                     <Grid item sm={8}>
                         {/* <InputText
                             label="ID pacienta"
