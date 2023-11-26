@@ -164,7 +164,7 @@ const Novy = () => {
                             }}
                         /> */}
                         <InputAutocomplete
-                        label="ID pacienta"
+                        label="Pacient"
                         options={patients.map(option => ({id: option.id, label: `${option.name[0].given[0]} ${option.name[0].family}`}))}
                         inputValue={patientRecord.pacientId}
                         onInputChange={(event, newInputValue) => {
