@@ -17,9 +17,12 @@ const columns = [
         sortable: false,
         width: 120,
         renderCell: (params) => {
+          const row = params.row
+          console.log(row)
+          
           return (
             <Box sx={{p:1,width:'100%'}} >
-            <Select size='small' sx={{width:'80%'}} defaultValue={0}>
+            <Select size='small' sx={{width:'80%'}} onChange={(e) => row.color = e.target.value} value={row.color}>
                 <MenuItem value={0}>---</MenuItem>
                 <MenuItem value={1}>1</MenuItem>
                 <MenuItem value={2}>2</MenuItem>
@@ -124,13 +127,17 @@ const Prehled = () => {
         <Box sx={{m:2, mt:8, height:'80vh'}}>
             <StyledDataGrid columns={columns} rows={rows} 
             initialState={{ pinnedColumns: { left: ['mark'] } }}
-            getRowClassName={(params) => 'OK'}
+            getRowClassName={(params) => {
+               const row = params.row;
+              return getRowClass(row.color)
+            }
+            }
             />
         </Box>
     )
 }
 
-const getRowClass = ({mark}) => {
+const getRowClass = (mark) => {
     if (mark === 0){return ''}
     else if (mark === 1){return 'OK'}
     else if (mark === 2){return 'possiblyProblematic'}
