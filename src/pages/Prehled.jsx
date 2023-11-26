@@ -5,6 +5,7 @@ import {
   DataGridPremium,
   useGridApiRef,
   useKeepGroupedColumnsHidden,
+  GridToolbar
 } from '@mui/x-data-grid-premium';
 import { useMovieData } from '@mui/x-data-grid-generator';
 import { Box, Select, MenuItem } from '@mui/material';
@@ -127,6 +128,7 @@ const Prehled = () => {
         <Box sx={{m:2, mt:8, height:'80vh'}}>
             <StyledDataGrid columns={columns} rows={rows} 
             initialState={{ pinnedColumns: { left: ['mark'] } }}
+            slots={{ toolbar: GridToolbar }}
             getRowClassName={(params) => {
                const row = params.row;
               return getRowClass(row.color)
