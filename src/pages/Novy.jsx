@@ -88,7 +88,7 @@ const Novy = () => {
                 <TableHead>
                     <TableRow>
                         <TableCell width='200'><b>Soubor</b></TableCell>
-                        <TableCell><b>Typ</b></TableCell>
+                        <TableCell><b>Šablona</b></TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -164,7 +164,7 @@ const Novy = () => {
                             }}
                         /> */}
                         <InputAutocomplete
-                        label="ID pacienta"
+                        label="Pacient"
                         options={patients.map(option => ({id: option.id, label: `${option.name[0].given[0]} ${option.name[0].family}`}))}
                         inputValue={patientRecord.pacientId}
                         onInputChange={(event, newInputValue) => {

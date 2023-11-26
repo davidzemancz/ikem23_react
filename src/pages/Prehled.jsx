@@ -13,8 +13,10 @@ import RowGroupingBasicExample from '../GridPro';
 import axios from 'axios';
 
 const columns = [
+    { field: 'recommendMark', headerName: 'Doporučení', width: 100 },
     {
         field: "mark",
+        headerName: 'Značka',
         sortable: false,
         width: 120,
         renderCell: (params) => {
@@ -33,14 +35,14 @@ const columns = [
           );
         }
       },
-    { field: 'id', headerName: 'ID', width: 150 },
+    { field: 'id', headerName: 'ID', width: 100 },
     { field: 'idBiopsie', headerName: 'ID biopsie', width: 150 },
     { field: 'projekt', headerName: 'Projekt', width: 150 },
     { field: 'diagnoza', headerName: 'Diagnóza', width: 150 },
     { field: 'onkologickyKod', headerName: 'Onkologický kód', width: 150 },
-    { field: 'kodPojistovna', headerName: 'Kód pojišťovna', width: 150 },
-    { field: 'prijemLMP', headerName: 'Příjem LMP', width: 150 },
-    { field: 'uzavreniLMP', headerName: 'Uzavření LMP', width: 150 },
+    { field: 'kodPojistovna', headerName: 'Kód pojišťovny', width: 150 },
+    { field: 'prijemLMP', headerName: 'Příjem LMP', width: 200 },
+    { field: 'uzavreniLMP', headerName: 'Uzavření LMP', width: 200 },
     { field: 'dobaOdezvy', headerName: 'Doba odezvy', width: 150 },
     { field: 'patientId', headerName: 'Patient ID', width: 150 },
     { field: 'iGVKontrola', headerName: 'IGV kontrola - iniciály', width: 200 },
@@ -50,9 +52,9 @@ const columns = [
     { field: 'pomerNadorovychBunek', headerName: '% nádorových buněk', width: 200 },
     { field: 'dNAKoncPo1PCR', headerName: 'DNA konc. po 1.PCR', width: 200 },
     { field: 'dNAPrumernePokryti', headerName: 'DNA průměrné pokrytí', width: 200 },
-    { field: 'dNATMB', headerName: 'DNA TMB', width: 150 },
-    { field: 'dNAMSI', headerName: 'DNA MSI', width: 150 },
-    { field: 'hRD', headerName: 'HRD', width: 150 },
+    { field: 'dNATMB', headerName: 'DNA TMB', width: 100 },
+    { field: 'dNAMSI', headerName: 'DNA MSI', width: 100 },
+    { field: 'hRD', headerName: 'HRD', width: 100 },
     { field: 'genomBuildPuvodni', headerName: 'Genom build - původní', width: 200 },
     { field: 'chromosome', headerName: 'Chromosome', width: 150 },
     { field: 'region', headerName: 'Region', width: 150 },
@@ -69,7 +71,7 @@ const columns = [
     { field: 'codingRegionChange', headerName: 'Coding region change', width: 200 },
     { field: 'aminoAcidChange', headerName: 'Amino acid change', width: 200 },
     { field: 'exonNumber', headerName: 'Exon Number', width: 150 },
-    { field: 'typeOfMutation', headerName: 'Type of mutation', width: 150 },
+    { field: 'typeOfMutation', headerName: 'Type of mutation', width: 200 },
   ];
 
   const StyledDataGrid = styled(DataGridPremium)(() => ({
@@ -126,9 +128,8 @@ const Prehled = () => {
 
     return(
         <Box sx={{m:2, mt:8, height:'80vh'}}>
-            <StyledDataGrid columns={columns} rows={rows} 
-            initialState={{ pinnedColumns: { left: ['mark'] } }}
-            slots={{ toolbar: GridToolbar }}
+            <StyledDataGrid columns={columns} rows={rows}
+            initialState={{ pinnedColumns: { left: ['recommendMark','mark'] } }}
             getRowClassName={(params) => {
                const row = params.row;
               return getRowClass(row.color)
