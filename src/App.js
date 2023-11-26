@@ -74,11 +74,11 @@ function App() {
   return (
     <Box className="App" sx={{ display: 'flex', overflow:'hidden', width: '100%' }}>
       <AppBar position="fixed">
-        <Toolbar sx={{display:'flex'}}>
+        <Toolbar>
         <List sx={{display:'flex'}}>
-          <ListItem key={'Přehled'} disablePadding sx={{width:'100px'}}>
-            <ListItemButton component={Link} to="/prehled">
-              <ListItemText primary={'Přehled'} />
+          <ListItem key={'Přehled'} disablePadding sx={{width:'100px', display:'flex'}} alignItems='center' >
+            <ListItemButton component={Link} to="/prehled" sx={{display:'flex'}} alignItems='center'>
+              <ListItemText primary={'Přehled'} sx={{display:'flex'}} alignItems='center'/>
             </ListItemButton>
           </ListItem>
           <ListItem key={'Statistiky'} disablePadding sx={{width:'100px'}}>
