@@ -69,7 +69,7 @@ const columns = [
   ];
 
   const StyledDataGrid = styled(DataGridPremium)(() => ({
-    '& .OK': {
+    '&& .OK': {
       backgroundColor: '#9ADE7B80',
       '&:hover': {
         backgroundColor: '#9ADE7B',
@@ -81,7 +81,7 @@ const columns = [
         },
       },
     },
-    '& .possiblyProblematic': {
+    '&& .possiblyProblematic': {
       backgroundColor: '#EEF296',
       '&:hover': {
         backgroundColor: '#EEF296',
@@ -93,7 +93,7 @@ const columns = [
         },
       },
     },
-    '& .danger': {
+    '&& .danger': {
       backgroundColor: '#FF8F8Faa',
       '&:hover': {
         backgroundColor: '#FF8F8F',
