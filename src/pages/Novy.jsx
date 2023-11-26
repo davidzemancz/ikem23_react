@@ -88,7 +88,7 @@ const Novy = () => {
                 <TableHead>
                     <TableRow>
                         <TableCell width='200'><b>Soubor</b></TableCell>
-                        <TableCell><b>Typ</b></TableCell>
+                        <TableCell><b>Šablona</b></TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
