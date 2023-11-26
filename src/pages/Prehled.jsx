@@ -128,7 +128,7 @@ const Prehled = () => {
 
     return(
         <Box sx={{m:2, mt:8, height:'80vh'}}>
-            <StyledDataGrid columns={columns} rows={rows}
+            <StyledDataGrid columns={columns} rows={rows} slots={{ toolbar: GridToolbar }}
             initialState={{ pinnedColumns: { left: ['recommendMark','mark'] } }}
             getRowClassName={(params) => {
                const row = params.row;
